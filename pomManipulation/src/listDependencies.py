@@ -1,4 +1,5 @@
 #!/usr/bin/python2.6
+# -*- coding: utf-8 -*-
 __author__ = 'jean-philippe_hautin'
 
 import os

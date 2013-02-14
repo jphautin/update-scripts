@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+__author__ = 'jean-philippe_hautin'
+
+
 import sys
 import functools
 

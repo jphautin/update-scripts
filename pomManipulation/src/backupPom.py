@@ -1,4 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/python2.6
+# -*- coding: utf-8 -*-
+__author__ = 'jean-philippe_hautin'
+
 import glob
 import shutil
 from listPom import getPomFilenames
