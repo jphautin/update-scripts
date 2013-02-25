@@ -178,6 +178,8 @@ def updateExpressions(pomFilename):
             #update path to use java separator and not windows separator (will not work on Linux Integration Server :) )
         if "<systemPath" in line:
             line=line.replace('\\','/')
+        if "src\\assembly" in line:
+            line=line.replace('\\','/')
         updatedPomFile.write(line)
     updatedPomFile.close()
     pomFile.close()
@@ -197,14 +199,14 @@ def retrieveGroupId(pomFilename,artifactId):
         return EURONET_PACKAGE+".commons"
     elif "vault" in absolutePathName:
         return  EURONET_PACKAGE+".vault"
-    elif "BR_WS_DEV_" in absolutePathName:
+    elif "BR_WS_" in absolutePathName:
         return  EURONET_PACKAGE+".ws"
-    elif "BR_EURONETFO_DEV_" in absolutePathName:
+    elif "BR_EURONETFO_" in absolutePathName:
         if "EuronetBuild" in absolutePathName:
             return EURONET_PACKAGE+".core.assembly"
         else:
             return EURONET_PACKAGE+".core"
-    elif "BR_DET_DEV_" in absolutePathName:
+    elif "BR_DET_" in absolutePathName:
         return  EURONET_PACKAGE+".det"
     else:
         print "warn : return default package for pom file %s " % pomFilename
