@@ -6,12 +6,18 @@ import glob
 import shutil
 import sys
 import os
+import fnmatch
+
+def locate(pattern, root=os.curdir):
+    '''Locate all files matching supplied filename pattern in and below
+    supplied root directory.'''
+    for path, dirs, files in os.walk(os.path.abspath(root)):
+        for filename in fnmatch.filter(files, pattern):
+            yield os.path.join(path, filename)
+
 
 def getPomFilenames(filename = "pom.xml",searchRootDirectory = "."):
-  pomFilenames =  glob.glob(searchRootDirectory+"/"+filename)
-  pomFilenames.extend(glob.glob(searchRootDirectory+"/*/"+filename))
-  pomFilenames.extend(glob.glob(searchRootDirectory+"/*/*/"+filename))
-  pomFilenames.extend(glob.glob(searchRootDirectory+"/*/*/*/"+filename))
+  pomFilenames = locate(filename,searchRootDirectory)
   finalPomFilenames = [ f for f in pomFilenames if not "/bin/" in f ]
   finalPomFilenames.sort()
   return finalPomFilenames
